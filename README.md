@@ -11,3 +11,6 @@ The main theme of the game is of course Balloon Guy, whether he's the main chara
 
 # Credits
 So far no credits to anyone (Apart from Shady Cicada, who made Balloon Guy)
+
+# Other Info
+Heres a link to the google doc where we write down ideas and concepts: https://docs.google.com/document/d/1vGlbsby1x-aWLBh_DmZ7wSg3zXeDSWdrncuNIwU8Jx8/edit?usp=sharing
