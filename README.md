@@ -1,7 +1,7 @@
 # BguysBday
 A game made for Balloon Guy (OC by Shady Cicada)
 
-This project is open for anyone to help. If you want to help, send me a DM on discord: thoukkol
+This project is open for anyone to help. If you want to help, send me a DM on discord: thoukkol : or ping me in shadys discord
 If you choose to help, you will of course be credited
 
 # Short game description
