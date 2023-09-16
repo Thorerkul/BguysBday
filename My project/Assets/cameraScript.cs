@@ -7,37 +7,16 @@ public class cameraScript : MonoBehaviour
     public Transform target1;
     public Transform target2;
     public Transform centerOrigin;
+    public Transform currentTarget;
 
-    public float timebetweentargets;
-    public float currentLerp;
-    public float currenttime;
-    public bool isOnWayBack;
-    public float rotationAngle;
+    private void Start()
+    {
+        currentTarget = centerOrigin;
+    }
 
     private void Update()
     {
-        if (isOnWayBack)
-        {
-            currenttime += Time.deltaTime;
-            if (currenttime >= timebetweentargets)
-            {
-                isOnWayBack = false;
-            }
-        }
-        else
-        {
-            currenttime -= Time.deltaTime;
-            if (currenttime <= 0)
-            {
-                isOnWayBack = true;
-            }
-        }
-
-        currentLerp = isOnWayBack ? 1 : -1;
-
-        transform.RotateAround(centerOrigin.position, Vector3.up, currentLerp * rotationAngle);
-
-        transform.LookAt(centerOrigin);
+        transform.LookAt(currentTarget);
         //transform.position = new Vector3(Mathf.Lerp(target1.position.x, target2.position.x, currentLerp), transform.position.y, transform.position.z);
     }
 }
