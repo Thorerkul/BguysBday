@@ -638,7 +638,7 @@ Light:
     m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.5
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1452,7 +1452,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 585105782}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854470113}
+        m_TargetAssemblyTypeName: combatContoller, Assembly-CSharp
+        m_MethodName: setAttack
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Basic
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &585105782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1938,12 +1950,14 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 600525111}
   enemyHealthSlider: {fileID: 9481498}
   player: {fileID: 1732863293}
+  isPlayerAttacking: 0
   attackHolder: {fileID: 1641132219}
   UIbasicAttack: {fileID: 585105781}
   UIheavyAttack: {fileID: 2145720154}
   UIpiercingAttack: {fileID: 1842686928}
   UIbluntAttack: {fileID: 2023668898}
   enemy: {fileID: 1453168325}
+  isEnemyAttacking: 0
   battleMusic: {fileID: 8300000, guid: 6c34d3dc4f0da714499a76c942b01eec, type: 3}
 --- !u!82 &854470114
 AudioSource:
@@ -2250,13 +2264,13 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453168320}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2407,7 +2421,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  damage: 5
+  immuneTo: -1
+  attackTypes: []
 --- !u!1 &1454525252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2614,7 @@ GameObject:
   - component: {fileID: 1732863291}
   - component: {fileID: 1732863294}
   - component: {fileID: 1732863293}
+  - component: {fileID: 1732863295}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2682,13 +2698,13 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732863288}
   m_BodyType: 0
-  m_Simulated: 1
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2758,6 +2774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basis: {fileID: 1732863294}
+  currentAttack: 0
+  anim: {fileID: 1732863295}
 --- !u!114 &1732863294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2772,7 +2790,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  damage: 5
+  immuneTo: -1
+  attackTypes:
+  - name: Basic
+    damage: 3
+    type: 0
+  - name: Heavy
+    damage: 2
+    type: 1
+  - name: Piercing
+    damage: 4
+    type: 2
+  - name: Blunt
+    damage: 4
+    type: 3
+--- !u!95 &1732863295
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732863288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eaee18d678a5d154380f9e83b4161585, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1742938966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,7 +3010,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1842686929}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854470113}
+        m_TargetAssemblyTypeName: combatContoller, Assembly-CSharp
+        m_MethodName: setAttack
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Piercing
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1842686929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3288,7 +3352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2023668899}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854470113}
+        m_TargetAssemblyTypeName: combatContoller, Assembly-CSharp
+        m_MethodName: setAttack
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Blunt
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2023668899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3445,7 +3521,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2145720155}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854470113}
+        m_TargetAssemblyTypeName: combatContoller, Assembly-CSharp
+        m_MethodName: setAttack
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Heavy
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2145720155
 MonoBehaviour:
   m_ObjectHideFlags: 0
