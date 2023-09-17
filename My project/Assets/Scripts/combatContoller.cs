@@ -53,14 +53,6 @@ public class combatContoller : MonoBehaviour
         {
             attackHolder.SetActive(true);
 
-            AnimatorStateInfo currentPlayerStateInfo = player.anim.GetCurrentAnimatorStateInfo(0);
-
-            /*
-            if (currentPlayerStateInfo.IsName("PlayerBasicAttack") || currentPlayerStateInfo.IsName("PlayerHeavyAttack") || currentPlayerStateInfo.IsName("PlayerPiercingAttack") || currentPlayerStateInfo.IsName("PlayerBluntAttack"))
-            {
-                isPlayerTurn = false;
-            }*/
-
             cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
         }
         else
