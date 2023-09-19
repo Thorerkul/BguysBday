@@ -32,6 +32,14 @@ public class combatContoller : MonoBehaviour
 
     public enemyScript enemy;
     public bool isEnemyAttacking;
+    public bool hasEnemyStartedAttacking;
+
+    [Header("Timekeeping")]
+    public float playerendturntime;
+    public float playeranimationtime;
+
+    public float enemyendturntime;
+    public float enemyanimationtime;
 
     [Header("Sound")]
     public AudioClip battleMusic;
@@ -59,18 +67,49 @@ public class combatContoller : MonoBehaviour
         {
             attackHolder.SetActive(false);
 
-            AnimatorStateInfo currentPlayerStateInfo = player.anim.GetCurrentAnimatorStateInfo(0);
-
-            if (currentPlayerStateInfo.IsName("PlayerIdle"))
-            {
-                isPlayerAttacking = false;
-            }
-
             if (!isPlayerAttacking)
             {
+                if (isEnemyAttacking && hasEnemyStartedAttacking == false)
+                {
+                    if (enemy.currentAttack == AttackTypes.Basic)
+                    {
+                        enemy.attack(AttackTypes.Basic, player, enemy.basis.attackTypes[0].damage);
+                        enemy.anim.SetTrigger("BasicAttack");
+                        enemyendturntime = Time.timeSinceLevelLoad;
+                        hasEnemyStartedAttacking = true;
+                    }
+                    else if (enemy.currentAttack == AttackTypes.Heavy)
+                    {
+                        enemy.attack(AttackTypes.Heavy, player, enemy.basis.attackTypes[1].damage);
+                        enemy.anim.SetTrigger("HeavyAttack");
+                        enemyendturntime = Time.timeSinceLevelLoad;
+                        hasEnemyStartedAttacking = true;
+                    }
+                    else
+                    {
+                        enemy.attack(AttackTypes.Basic, player, enemy.basis.attackTypes[0].damage);
+                        enemy.anim.SetTrigger("BasicAttack");
+                        enemyendturntime = Time.timeSinceLevelLoad;
+                        hasEnemyStartedAttacking = true;
+                    }
+                } 
+                if (Time.timeSinceLevelLoad - enemyendturntime >= enemyanimationtime)
+                {
+                    isEnemyAttacking = false;
+                    isPlayerTurn = true;
+                    hasEnemyStartedAttacking = false;
+                }
+
                 cameraCenter.position = Vector3.Lerp(cameraCenter.position, enemy.transform.position, cameraSmooth);
             } else
             {
+                if (Time.timeSinceLevelLoad - playerendturntime >= playeranimationtime)
+                {
+                    isPlayerAttacking = false;
+                    isEnemyAttacking = true;
+                    //enemy.currentAttack = enemy.basis.attackTypes[Random.Range(0, enemy.basis.attackTypes.Count)].type;
+                }
+
                 cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
             }
         }
@@ -105,5 +144,7 @@ public class combatContoller : MonoBehaviour
 
         isPlayerAttacking = true;
         isPlayerTurn = false;
+        enemy.currentAttack = enemy.basis.attackTypes[Random.Range(0, enemy.basis.attackTypes.Count)].type;
+        playerendturntime = Time.timeSinceLevelLoad;
     }
 }
