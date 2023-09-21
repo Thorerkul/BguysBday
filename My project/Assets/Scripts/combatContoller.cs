@@ -100,7 +100,7 @@ public class combatContoller : MonoBehaviour
                     hasEnemyStartedAttacking = false;
                 }
 
-                cameraCenter.position = Vector3.Lerp(cameraCenter.position, enemy.transform.position, cameraSmooth);
+                cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
             } else
             {
                 if (Time.timeSinceLevelLoad - playerendturntime >= playeranimationtime)
@@ -110,7 +110,7 @@ public class combatContoller : MonoBehaviour
                     //enemy.currentAttack = enemy.basis.attackTypes[Random.Range(0, enemy.basis.attackTypes.Count)].type;
                 }
 
-                cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
+                cameraCenter.position = Vector3.Lerp(cameraCenter.position, enemy.transform.position, cameraSmooth);
             }
         }
     }
