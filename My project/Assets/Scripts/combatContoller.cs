@@ -74,21 +74,21 @@ public class combatContoller : MonoBehaviour
                     if (enemy.currentAttack == AttackTypes.Basic)
                     {
                         enemy.attack(AttackTypes.Basic, player, enemy.basis.attackTypes[0].damage);
-                        enemy.anim.SetTrigger("BasicAttack");
+                        enemy.anim.SetTrigger("attack");
                         enemyendturntime = Time.timeSinceLevelLoad;
                         hasEnemyStartedAttacking = true;
                     }
                     else if (enemy.currentAttack == AttackTypes.Heavy)
                     {
                         enemy.attack(AttackTypes.Heavy, player, enemy.basis.attackTypes[1].damage);
-                        enemy.anim.SetTrigger("HeavyAttack");
+                        enemy.anim.SetTrigger("attack");
                         enemyendturntime = Time.timeSinceLevelLoad;
                         hasEnemyStartedAttacking = true;
                     }
                     else
                     {
                         enemy.attack(AttackTypes.Basic, player, enemy.basis.attackTypes[0].damage);
-                        enemy.anim.SetTrigger("BasicAttack");
+                        enemy.anim.SetTrigger("attack");
                         enemyendturntime = Time.timeSinceLevelLoad;
                         hasEnemyStartedAttacking = true;
                     }
