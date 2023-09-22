@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class combatContoller : MonoBehaviour
 {
-    public Transform cameraCenter;
-    public cameraScript cam;
-
     public bool isInCombat;
 
     public bool isPlayerTurn;
@@ -15,6 +12,8 @@ public class combatContoller : MonoBehaviour
     [Header("Camera")]
     [Range(0,1)]
     public float cameraSmooth;
+    public Transform cameraCenter;
+    public cameraScript cam;
 
     [Header("UI")]
     public Slider playerHealthSlider;
@@ -44,16 +43,23 @@ public class combatContoller : MonoBehaviour
     [Header("Sound")]
     public AudioClip battleMusic;
 
+    [Header("Other")]
+    public GameObject battleUI;
+
     private void Update()
     {
         if (isInCombat)
         {
             CombatUpdate();
+        } else
+        {
+            battleUI.SetActive(false);
         }
     }
 
     void CombatUpdate()
     {
+        battleUI.SetActive(true);
         playerHealthSlider.value = player.basis.health / player.basis.maxHealth;
         enemyHealthSlider.value = enemy.basis.health / enemy.basis.maxHealth;
 
