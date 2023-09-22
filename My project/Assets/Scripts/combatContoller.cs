@@ -42,6 +42,7 @@ public class combatContoller : MonoBehaviour
 
     [Header("Sound")]
     public AudioClip battleMusic;
+    public AudioClip fieldMusic;
 
     [Header("Other")]
     public GameObject battleUI;
@@ -53,13 +54,21 @@ public class combatContoller : MonoBehaviour
             CombatUpdate();
         } else
         {
-            battleUI.SetActive(false);
+            NormalUpdate();
         }
+
+        battleUI.SetActive(isInCombat);
+        player.isInCombat = isInCombat;
+    }
+
+    void NormalUpdate()
+    {
+        cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
+
     }
 
     void CombatUpdate()
     {
-        battleUI.SetActive(true);
         playerHealthSlider.value = player.basis.health / player.basis.maxHealth;
         enemyHealthSlider.value = enemy.basis.health / enemy.basis.maxHealth;
 
