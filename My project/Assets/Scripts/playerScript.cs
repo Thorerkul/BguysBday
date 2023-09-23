@@ -11,11 +11,18 @@ public class playerScript : MonoBehaviour
     public bool isInCombat;
     public float movementSpeed;
     public Rigidbody rb;
+    public LayerMask obstacles;
 
     [Header("Camera")]
     public cameraScript cam;
+    public float camDist;
 
     public Animator anim;
+
+    private void Start()
+    {
+        camDist = Vector3.Distance(transform.position, cam.transform.position);
+    }
 
     public void attack(AttackTypes type, enemyScript enemy, float damage)
     {
@@ -29,7 +36,19 @@ public class playerScript : MonoBehaviour
     {
         if (!isInCombat)
         {
-            
+            Quaternion olddirection = transform.rotation;
+            transform.LookAt(cam.transform);
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, camDist, obstacles))
+            {
+                cam.transform.position = hit.point;
+            } else
+            {
+                cam.transform.position = Vector3.forward * camDist;
+            }
+
+            transform.rotation = olddirection;
 
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
