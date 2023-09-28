@@ -19,6 +19,11 @@ public class playerScript : MonoBehaviour
 
     public Animator anim;
 
+    [Header("Combat")]
+    public float helium;
+    public float maxHelium;
+    public int soup;
+
     private void Start()
     {
         camDist = Vector3.Distance(transform.position, cam.transform.position);
@@ -29,6 +34,10 @@ public class playerScript : MonoBehaviour
         if (type != enemy.basis.immuneTo)
         {
             enemy.basis.health -= damage;
+        }
+        if (type != AttackTypes.None && type != AttackTypes.Basic)
+        {
+            helium -= 5f;
         }
     }
 

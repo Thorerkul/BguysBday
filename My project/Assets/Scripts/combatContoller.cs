@@ -17,6 +17,7 @@ public class combatContoller : MonoBehaviour
 
     [Header("UI")]
     public Slider playerHealthSlider;
+    public Slider playerHeliumSlider;
     public Slider enemyHealthSlider;
 
     [Header("Combat")]
@@ -70,6 +71,7 @@ public class combatContoller : MonoBehaviour
     void CombatUpdate()
     {
         playerHealthSlider.value = player.basis.health / player.basis.maxHealth;
+        playerHeliumSlider.value = player.helium / player.maxHelium;
         enemyHealthSlider.value = enemy.basis.health / enemy.basis.maxHealth;
 
         if (isPlayerTurn)
@@ -138,23 +140,26 @@ public class combatContoller : MonoBehaviour
             player.anim.SetTrigger("BasicAttack");
             player.attack(AttackTypes.Basic, enemy, player.basis.attackTypes[0].damage);
         } 
-        else if (attack == "Heavy")
+        else if (attack == "Heavy" && player.helium >= 5f)
         {
             player.currentAttack = AttackTypes.Heavy;
             player.anim.SetTrigger("HeavyAttack");
             player.attack(AttackTypes.Heavy, enemy, player.basis.attackTypes[1].damage);
         }
-        else if (attack == "Piercing")
+        else if (attack == "Piercing" && player.helium >= 5f)
         {
             player.currentAttack = AttackTypes.Piercing;
             player.anim.SetTrigger("PiercingAttack");
             player.attack(AttackTypes.Piercing, enemy, player.basis.attackTypes[2].damage);
         }
-        else if (attack == "Blunt")
+        else if (attack == "Blunt" && player.helium >= 5f)
         {
             player.currentAttack = AttackTypes.Blunt;
             player.anim.SetTrigger("BluntAttack");
             player.attack(AttackTypes.Blunt, enemy, player.basis.attackTypes[3].damage);
+        }
+        else{
+            return;
         }
 
         isPlayerAttacking = true;
