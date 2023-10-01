@@ -34,6 +34,9 @@ public class combatContoller : MonoBehaviour
     public bool isEnemyAttacking;
     public bool hasEnemyStartedAttacking;
 
+    public enemyScript[] enemies;
+    public bool[] enemyTurn;
+
     [Header("Timekeeping")]
     public float playerendturntime;
     public float playeranimationtime;
@@ -65,7 +68,6 @@ public class combatContoller : MonoBehaviour
     void NormalUpdate()
     {
         cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
-
     }
 
     void CombatUpdate()
@@ -86,7 +88,40 @@ public class combatContoller : MonoBehaviour
 
             if (!isPlayerAttacking)
             {
-                if (isEnemyAttacking && hasEnemyStartedAttacking == false)
+                if (isEnemyAttacking && !hasEnemyStartedAttacking){
+                    enemyTurn[0] = true;
+                    for (int i = 0; i < enemies.Length; i++){
+                        enemyScript curEnemy = enemies[i];
+                        if (enemyTurn[i])
+                        {
+                            if (curEnemy.currentAttack == AttackTypes.Basic)
+                            {
+                                curEnemy.attack(AttackTypes.Basic, player, curEnemy.basis.attackTypes[0].damage);
+                                curEnemy.anim.SetTrigger("attack");
+                                //hasEnemyStartedAttacking = true;
+                            }
+                            else if (curEnemy.currentAttack == AttackTypes.Heavy)
+                            {
+                                curEnemy.attack(AttackTypes.Heavy, player, curEnemy.basis.attackTypes[1].damage);
+                                curEnemy.anim.SetTrigger("attack");
+                                //hasEnemyStartedAttacking = true;
+                            }
+                            else
+                            {
+                                curEnemy.attack(AttackTypes.Basic, player, curEnemy.basis.attackTypes[0].damage);
+                                curEnemy.anim.SetTrigger("attack");
+                                //hasEnemyStartedAttacking = true;
+                            }
+                            enemyTurn[i] = false;
+                            if (i+1 <= enemyTurn.Length - 1)
+                                enemyTurn[i+1] = true;
+                            else
+                                hasEnemyStartedAttacking = true;
+                        }
+                    }
+                    enemyendturntime = Time.timeSinceLevelLoad;
+                }
+/*                if (isEnemyAttacking && hasEnemyStartedAttacking == false)
                 {
                     if (enemy.currentAttack == AttackTypes.Basic)
                     {
@@ -109,7 +144,7 @@ public class combatContoller : MonoBehaviour
                         enemyendturntime = Time.timeSinceLevelLoad;
                         hasEnemyStartedAttacking = true;
                     }
-                } 
+                } */
                 if (Time.timeSinceLevelLoad - enemyendturntime >= enemyanimationtime)
                 {
                     isEnemyAttacking = false;
