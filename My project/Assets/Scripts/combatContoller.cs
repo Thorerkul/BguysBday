@@ -36,6 +36,7 @@ public class combatContoller : MonoBehaviour
 
     public enemyScript[] enemies;
     public bool[] enemyTurn;
+    public int currentEnemy;
 
     [Header("Timekeeping")]
     public float playerendturntime;
@@ -89,37 +90,46 @@ public class combatContoller : MonoBehaviour
             if (!isPlayerAttacking)
             {
                 if (isEnemyAttacking && !hasEnemyStartedAttacking){
-                    enemyTurn[0] = true;
-                    for (int i = 0; i < enemies.Length; i++){
-                        enemyScript curEnemy = enemies[i];
-                        if (enemyTurn[i])
+                    enemyScript curEnemy = enemies[currentEnemy];
+                    if (enemyTurn[currentEnemy])
+                    {
+                        if (curEnemy.currentAttack == AttackTypes.Basic)
                         {
-                            if (curEnemy.currentAttack == AttackTypes.Basic)
-                            {
-                                curEnemy.attack(AttackTypes.Basic, player, curEnemy.basis.attackTypes[0].damage);
-                                curEnemy.anim.SetTrigger("attack");
-                                //hasEnemyStartedAttacking = true;
-                            }
-                            else if (curEnemy.currentAttack == AttackTypes.Heavy)
-                            {
-                                curEnemy.attack(AttackTypes.Heavy, player, curEnemy.basis.attackTypes[1].damage);
-                                curEnemy.anim.SetTrigger("attack");
-                                //hasEnemyStartedAttacking = true;
-                            }
-                            else
-                            {
-                                curEnemy.attack(AttackTypes.Basic, player, curEnemy.basis.attackTypes[0].damage);
-                                curEnemy.anim.SetTrigger("attack");
-                                //hasEnemyStartedAttacking = true;
-                            }
-                            enemyTurn[i] = false;
-                            if (i+1 <= enemyTurn.Length - 1)
-                                enemyTurn[i+1] = true;
-                            else
-                                hasEnemyStartedAttacking = true;
+                            curEnemy.attack(AttackTypes.Basic, player, curEnemy.basis.attackTypes[0].damage);
+                            curEnemy.anim.SetTrigger("attack");
+                            enemyendturntime = Time.timeSinceLevelLoad;
+                            //hasEnemyStartedAttacking = true;
+                        }
+                        else if (curEnemy.currentAttack == AttackTypes.Heavy)
+                        {
+                            curEnemy.attack(AttackTypes.Heavy, player, curEnemy.basis.attackTypes[1].damage);
+                            curEnemy.anim.SetTrigger("attack");
+                            enemyendturntime = Time.timeSinceLevelLoad;
+                            //hasEnemyStartedAttacking = true;
+                        }
+                        else
+                        {
+                            curEnemy.attack(AttackTypes.Basic, player, curEnemy.basis.attackTypes[0].damage);
+                            curEnemy.anim.SetTrigger("attack");
+                            enemyendturntime = Time.timeSinceLevelLoad;
+                            //hasEnemyStartedAttacking = true;
+                        }
+                        enemyTurn[currentEnemy] = false;
+                    }
+                    else if (Time.timeSinceLevelLoad - enemyendturntime >= enemyanimationtime)
+                    {
+                        currentEnemy++;
+                        if (currentEnemy <= enemyTurn.Length - 1)
+                        {
+                            enemyTurn[currentEnemy] = true;
+                        }
+                        else
+                        {
+                            isEnemyAttacking = false;
+                            isPlayerTurn = true;
+                            hasEnemyStartedAttacking = false;
                         }
                     }
-                    enemyendturntime = Time.timeSinceLevelLoad;
                 }
 /*                if (isEnemyAttacking && hasEnemyStartedAttacking == false)
                 {
@@ -145,12 +155,12 @@ public class combatContoller : MonoBehaviour
                         hasEnemyStartedAttacking = true;
                     }
                 } */
-                if (Time.timeSinceLevelLoad - enemyendturntime >= enemyanimationtime)
+                /*if (Time.timeSinceLevelLoad - enemyendturntime >= enemyanimationtime)
                 {
                     isEnemyAttacking = false;
                     isPlayerTurn = true;
                     hasEnemyStartedAttacking = false;
-                }
+                }*/
 
                 cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
             } else
@@ -159,7 +169,10 @@ public class combatContoller : MonoBehaviour
                 {
                     isPlayerAttacking = false;
                     isEnemyAttacking = true;
-                    //enemy.currentAttack = enemy.basis.attackTypes[Random.Range(0, enemy.basis.attackTypes.Count)].type;
+                    enemyTurn[0] = true;
+                    currentEnemy = 0;
+                    foreach(enemyScript curEnemy in enemies)
+                        curEnemy.currentAttack = curEnemy.basis.attackTypes[Random.Range(0, curEnemy.basis.attackTypes.Count)].type;
                 }
 
                 cameraCenter.position = Vector3.Lerp(cameraCenter.position, enemy.transform.position, cameraSmooth);
