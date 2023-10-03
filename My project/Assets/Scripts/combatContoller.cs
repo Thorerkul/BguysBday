@@ -68,7 +68,7 @@ public class combatContoller : MonoBehaviour
 
     void NormalUpdate()
     {
-        cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
+        //cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
     }
 
     void CombatUpdate()

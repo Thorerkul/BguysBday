@@ -10,6 +10,12 @@ public class playerScript : MonoBehaviour
     [Header("Movement")]
     public bool isInCombat;
     public float movementSpeed;
+    public float jumpForce;
+    public float distToJump;
+    public bool canJump;
+    public bool isGrounded;
+    public LayerMask ground;
+    public Transform groundPoint;
     public Rigidbody rb;
     public LayerMask obstacles;
 
@@ -45,19 +51,19 @@ public class playerScript : MonoBehaviour
     {
         if (!isInCombat)
         {
-            Quaternion olddirection = transform.rotation;
-            transform.LookAt(cam.transform);
-
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, camDist, obstacles))
+            if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, distToJump, ground))
             {
-                cam.transform.position = hit.point;
+                isGrounded = true;
             } else
             {
-                cam.transform.position = Vector3.forward * camDist;
+                isGrounded = false;
             }
 
-            transform.rotation = olddirection;
+            if (Input.GetAxisRaw("Jump") >= 0.5f && canJump && isGrounded)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            }
 
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
