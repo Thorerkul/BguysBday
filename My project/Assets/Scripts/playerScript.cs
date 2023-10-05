@@ -98,13 +98,13 @@ public class playerScript : MonoBehaviour
                 npc.showPrompt = true;
                 if (Input.GetAxisRaw("Interact") > 0.1f && !isInDialogue)
                 {
-                    npc.trigger.TriggerDialogue();
-                    isInDialogue = true;
+                    npc.EnterDialogue();
                 }
                 if (isInDialogue)
                 {
                     npc.showPrompt = false;
                 }
+                isInDialogue = npc.isInDialogue;
             }
         }
     }
