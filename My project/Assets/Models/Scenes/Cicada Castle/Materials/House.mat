@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: House
-  m_Shader: {fileID: -6465566751694194690, guid: f38ed1529ebab4a489d6503bcd8041de, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 00f8d45d095ee2b47a3c1bf8e9c03a00, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _albedo:
-        m_Texture: {fileID: 2800000, guid: 9f56ed2dea7578443a4463a9346a30cf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 277c38fede117d144ae66ad4e271d13b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal:
@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _rough:
-        m_Texture: {fileID: 2800000, guid: 145b1e759bfd6d644a3343176b573c10, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4beb98ccbf2b52441b172445bd3e9d2c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texture:

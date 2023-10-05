@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Floor
-  m_Shader: {fileID: -6465566751694194690, guid: f38ed1529ebab4a489d6503bcd8041de, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 00f8d45d095ee2b47a3c1bf8e9c03a00, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _albedo:
-        m_Texture: {fileID: 2800000, guid: 7e363c08ee2c81443a53871f4d087fb6, type: 3}
+        m_Texture: {fileID: 2800000, guid: c515f09aa034ecd4ea98f64b2a607b89, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal:
@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _rough:
-        m_Texture: {fileID: 2800000, guid: 6645d8df2a2252548adccd3e42e5ca37, type: 3}
+        m_Texture: {fileID: 2800000, guid: bcea62615abe16f4990e5aa13c8bbec8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texture:
