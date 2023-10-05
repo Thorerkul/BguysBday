@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class combatContoller : MonoBehaviour
 {
+    public int targetFPS = 60;
+
     public bool isInCombat;
 
     public bool isPlayerTurn;
@@ -51,6 +53,12 @@ public class combatContoller : MonoBehaviour
 
     [Header("Other")]
     public GameObject battleUI;
+
+    private void Start()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = targetFPS;
+    }
 
     private void Update()
     {

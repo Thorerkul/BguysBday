@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class playerScript : MonoBehaviour
@@ -29,6 +30,12 @@ public class playerScript : MonoBehaviour
     public float helium;
     public float maxHelium;
     public int soup;
+
+    [Header("Npc's")]
+    public bool canInteract;
+    public int npc;
+    public string interactableTag;
+    public bool isInDialogue;
 
     private void Start()
     {
@@ -60,12 +67,12 @@ public class playerScript : MonoBehaviour
                 isGrounded = false;
             }
 
-            if (Input.GetAxisRaw("Jump") >= 0.5f && canJump && isGrounded)
+            if (Input.GetAxisRaw("Jump") >= 0.5f && canJump && isGrounded && !isInDialogue)
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
             }
 
-            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * (isInDialogue ? 0 : 1);
 
             rb.velocity = new Vector3(input.x * movementSpeed, rb.velocity.y, input.y * movementSpeed);
 
@@ -78,6 +85,39 @@ public class playerScript : MonoBehaviour
             }
 
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == npc)
+        {
+            if (other.gameObject.tag == interactableTag.ToString())
+            {
+                NpcBase npc = other.GetComponentInParent<NpcBase>();
+                npc.showPrompt = true;
+                if (Input.GetAxisRaw("Interact") > 0.1f && !isInDialogue)
+                {
+                    npc.trigger.TriggerDialogue();
+                    isInDialogue = true;
+                }
+                if (isInDialogue)
+                {
+                    npc.showPrompt = false;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == npc)
+        {
+            if (other.gameObject.tag == interactableTag.ToString())
+            {
+                NpcBase npc = other.GetComponentInParent<NpcBase>();
+                npc.showPrompt = false;
+            }
         }
     }
 }
