@@ -10,9 +10,11 @@ public class NpcBase : MonoBehaviour
     public bool isInDialogue;
 
     public NPCConversation conversation;
+    public GameObject conversationManager;
 
     public void EnterDialogue()
     {
+        conversationManager.SetActive(true);
         ConversationManager.Instance.StartConversation(conversation);
         isInDialogue = true;
     }
