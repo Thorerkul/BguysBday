@@ -15,6 +15,6 @@ MonoBehaviour:
   itemName: Test  2
   icon: {fileID: 21300000, guid: cc0dc3add890be1408aeb24bb623a3a9, type: 3}
   isDefaultItem: 0
-  buyValue: 10
+  buyValue: 20
   sellValue: 10
   isEquipable: 0
