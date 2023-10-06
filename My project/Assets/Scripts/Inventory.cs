@@ -25,6 +25,8 @@ public class Inventory : MonoBehaviour
 
     public int space = 20;
 
+    public int gamerMiles;
+
     public List<Item> items = new List<Item>();
 
     public bool Add (Item item)
