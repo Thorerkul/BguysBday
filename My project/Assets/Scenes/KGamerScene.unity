@@ -465,6 +465,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &59450863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 59450864}
+  m_Layer: 0
+  m_Name: GroundPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &59450864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59450863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.454, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2006279864}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &60287446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,7 +1636,7 @@ MonoBehaviour:
   UIheavyAttack: {fileID: 1886691478}
   UIpiercingAttack: {fileID: 1756326963}
   UIbluntAttack: {fileID: 1640600966}
-  selectionConfirm: {fileID: 0}
+  selectionConfirm: {fileID: 177009036}
   enemy: {fileID: 1037837494}
   isEnemyAttacking: 0
   hasEnemyStartedAttacking: 0
@@ -4961,6 +4992,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 437957158}
+  - {fileID: 59450864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2006279865
@@ -4987,7 +5019,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 192
-  groundPoint: {fileID: 0}
+  groundPoint: {fileID: 59450864}
   rb: {fileID: 2006279866}
   obstacles:
     serializedVersion: 2
