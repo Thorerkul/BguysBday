@@ -15,8 +15,15 @@ public class ShopItem : MonoBehaviour
     private void Awake()
     {
         icon.sprite = item.icon;
-        text.text = item.itemName;
-        price.text = item.buyValue.ToString() + " GM";
+        if (item.isObtainable)
+        {
+            text.text = item.itemName;
+            price.text = item.buyValue.ToString() + " GM";
+        } else
+        {
+            text.text = "";
+            price.text = "";
+        }
     }
 
     public void ClearItem()

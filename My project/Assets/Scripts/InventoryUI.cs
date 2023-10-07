@@ -32,7 +32,7 @@ public class InventoryUI : MonoBehaviour
         prevInvButton = Input.GetButton("Inventory");
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         for (int i = 0; i < slots.Length; i++)
         {

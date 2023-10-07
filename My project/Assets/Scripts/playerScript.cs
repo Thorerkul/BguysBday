@@ -45,6 +45,7 @@ public class playerScript : MonoBehaviour
     [Header("Inventory")]
     public bool isInInventory;
     public bool canPickupItem;
+    public GameObject inventoryUI;
 
     private void Start()
     {
@@ -63,10 +64,15 @@ public class playerScript : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!isInCombat)
         {
+            isInInventory = inventoryUI.activeSelf;
+            if (isInDialogue)
+            {
+                inventoryUI.SetActive(false);
+            }
             canMove = !isInDialogue && !isInInventory;
 
             RaycastHit hit;

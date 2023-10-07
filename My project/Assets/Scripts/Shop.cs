@@ -34,13 +34,19 @@ public class Shop : MonoBehaviour
     {
         if (inventory.gamerMiles >= item.buyValue)
         {
-            inventory.Add(item);
-            inventory.gamerMiles -= item.buyValue;
-            money.text = inventory.gamerMiles.ToString();
+            if (item.isObtainable)
+            {
+                inventory.Add(item);
+                inventory.gamerMiles -= item.buyValue;
+                money.text = inventory.gamerMiles.ToString();
+            } else
+            {
+                Debug.Log("Not obtainable: " + item.name);
+            }
 
         } else
         {
-            Debug.Log("Not enough money");
+            Debug.Log("Not enough money for " + item.name + " Price: " + item.buyValue);
         }
     }
 

@@ -12,6 +12,7 @@ public class Item : ScriptableObject
     public int buyValue = 1;
     public int sellValue = 1;
     public bool isEquipable = false;
+    public bool isObtainable = true;
 
     public virtual void Use()
     {
