@@ -392,10 +392,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1501339831}
     m_Modifications:
     - target: {fileID: 6587515702603447313, guid: fb75e4cbb19b18049ade62f98ae8201f, type: 3}
-      propertyPath: item
-      value: 
-      objectReference: {fileID: 11400000, guid: c3764bb105ef2d44582139c898a1336f, type: 2}
-    - target: {fileID: 6587515702603447313, guid: fb75e4cbb19b18049ade62f98ae8201f, type: 3}
       propertyPath: shop
       value: 
       objectReference: {fileID: 2120438787}
@@ -961,8 +957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 7
-  json: '{"Options":[{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":201,"yPos":199},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"Shop","parentUIDs":[0],"SpeechUID":-1},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":549,"yPos":197},"ID":5,"ParamActions":[],"TMPFontGUID":null,"Text":"No","parentUIDs":[0],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":4},{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":5}],"EditorInfo":{"isRoot":true,"xPos":381.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Hello!
-    Buy my stuff!","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Shmupple","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
+  json: '{"Options":[{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":201,"yPos":199},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"Shop","parentUIDs":[0],"SpeechUID":-1},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":549,"yPos":197},"ID":5,"ParamActions":[],"TMPFontGUID":null,"Text":"No","parentUIDs":[0],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":4},{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":5}],"EditorInfo":{"isRoot":true,"xPos":382.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Hello!
+    Buy my stuff!","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Shmouppy","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: JOHN GUN
   DefaultSprite: {fileID: 0}
@@ -975,19 +971,7 @@ MonoBehaviour:
   EndConversationFont: {fileID: 11400000, guid: 20fe8f782ed7907489d0ee87ae484818, type: 2}
   Event:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2120438785}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &119449817
 GameObject:
   m_ObjectHideFlags: 0

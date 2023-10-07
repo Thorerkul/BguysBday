@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7666968633763544aad814e9f9e5ae83, type: 3}
   m_Name: testItem
   m_EditorClassIdentifier: 
-  itemName: Test
+  itemName: Shmouppy
   icon: {fileID: 21300000, guid: c8a22aaf3aebb3644bd41a16416ce624, type: 3}
   isDefaultItem: 0
   buyValue: 10
   sellValue: 10
   isEquipable: 0
+  isObtainable: 1
