@@ -1645,9 +1645,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 633018167}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc890a71dfaf5b4ca7f063f0a291965, type: 3}
+  m_Script: {fileID: 11500000, guid: b591b7598afa5f74b968e6958cf92046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curEnemy: 0
   enemies:
   - {fileID: 1037837494}
   - {fileID: 5688267}
@@ -1680,7 +1681,7 @@ Animator:
   m_GameObject: {fileID: 679079335}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 01ad7a1ff88bf35459c634cf9920c7b2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2dfcbd780a08bfc45979c88650b6a72c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2846,7 +2847,7 @@ Animator:
   m_GameObject: {fileID: 1084929064}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 01ad7a1ff88bf35459c634cf9920c7b2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2dfcbd780a08bfc45979c88650b6a72c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
