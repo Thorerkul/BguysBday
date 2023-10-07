@@ -25,12 +25,15 @@ public class combatContoller : MonoBehaviour
     [Header("Combat")]
     public playerScript player;
     public bool isPlayerAttacking;
+    public bool attackSet = false;
 
     public GameObject attackHolder;
     public Button UIbasicAttack;
     public Button UIheavyAttack;
     public Button UIpiercingAttack;
     public Button UIbluntAttack;
+
+    public GameObject selectionConfirm;
 
     public enemyScript enemy;
     public bool isEnemyAttacking;
@@ -87,13 +90,21 @@ public class combatContoller : MonoBehaviour
 
         if (isPlayerTurn)
         {
-            attackHolder.SetActive(true);
-
+            if (!attackSet)
+            {
+                attackHolder.SetActive(true);
+                selectionConfirm.SetActive(false);
+            }
+            else{
+                attackHolder.SetActive(false);
+                selectionConfirm.SetActive(true);
+            }
             cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
         }
         else
         {
             attackHolder.SetActive(false);
+            selectionConfirm.SetActive(false);
 
             if (!isPlayerAttacking)
             {
@@ -135,6 +146,7 @@ public class combatContoller : MonoBehaviour
                         {
                             isEnemyAttacking = false;
                             isPlayerTurn = true;
+                            attackSet = false;
                             hasEnemyStartedAttacking = false;
                         }
                     }
@@ -193,31 +205,33 @@ public class combatContoller : MonoBehaviour
         if (attack == "Basic")
         {
             player.currentAttack = AttackTypes.Basic;
-            player.anim.SetTrigger("BasicAttack");
-            player.attack(AttackTypes.Basic, enemy, player.basis.attackTypes[0].damage);
+            player.nextAnimation = "BasicAttack";
         } 
         else if (attack == "Heavy" && player.helium >= 5f)
         {
             player.currentAttack = AttackTypes.Heavy;
-            player.anim.SetTrigger("HeavyAttack");
-            player.attack(AttackTypes.Heavy, enemy, player.basis.attackTypes[1].damage);
+            player.nextAnimation = "HeavyAttack";
         }
         else if (attack == "Piercing" && player.helium >= 5f)
         {
             player.currentAttack = AttackTypes.Piercing;
-            player.anim.SetTrigger("PiercingAttack");
-            player.attack(AttackTypes.Piercing, enemy, player.basis.attackTypes[2].damage);
+            player.nextAnimation = "PiercingAttack";
         }
         else if (attack == "Blunt" && player.helium >= 5f)
         {
             player.currentAttack = AttackTypes.Blunt;
-            player.anim.SetTrigger("BluntAttack");
-            player.attack(AttackTypes.Blunt, enemy, player.basis.attackTypes[3].damage);
+            player.nextAnimation = "BluntAttack";
         }
         else{
             return;
         }
+        attackSet = true;
+    }
 
+    public void setEnemy()
+    {
+        player.attack(player.currentAttack, player.currentEnemy, player.basis.attackTypes[(int)player.currentAttack].damage);
+        player.anim.SetTrigger(player.nextAnimation);
         isPlayerAttacking = true;
         isPlayerTurn = false;
         enemy.currentAttack = enemy.basis.attackTypes[Random.Range(0, enemy.basis.attackTypes.Count)].type;
