@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1149704163886326228}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4302632621006060837}
   - component: {fileID: 7461175035087797304}
   - component: {fileID: 6807940232455425197}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 8703661185577749483}
   - component: {fileID: 3720990462415466602}
   - component: {fileID: 5833178600452172846}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
