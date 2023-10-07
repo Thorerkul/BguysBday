@@ -33,6 +33,8 @@ public class playerScript : MonoBehaviour
     public float helium;
     public float maxHelium;
     public int soup;
+    public enemyScript currentEnemy;
+    public string nextAnimation;
 
     [Header("Npc's")]
     public bool canInteract;
