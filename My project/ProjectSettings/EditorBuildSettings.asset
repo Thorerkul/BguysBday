@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cicada Castle Corridor.unity
     guid: cfd72488cf91325428748149b5a0ab77
+  - enabled: 1
+    path: Assets/Scenes/Final Boss.unity
+    guid: a00b2c597cecbdf4098a6171cc8bc7b1
   m_configObjects: {}

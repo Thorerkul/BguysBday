@@ -9,11 +9,23 @@ public class EnemySelector : MonoBehaviour
     public enemyScript[] enemies;
     enemyScript currentSelection;
     public playerScript player;
+    public combatContoller controller;
 
     float prevInput;
 
     void Update()
     {
+        if (curEnemy >= enemies.Length)
+        {
+            curEnemy = 0;
+        }
+
+        if (enemies.Length <= 0)
+        {
+            controller.ExitCombat();
+            return;
+        }
+
         //Debug.Log(Input.GetAxisRaw("Horizontal"));
         if (player.currentEnemy == null)
             player.currentEnemy = enemies[curEnemy];
