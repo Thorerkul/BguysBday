@@ -15,6 +15,7 @@ public class combatContoller : MonoBehaviour
     [Range(0,1)]
     public float cameraSmooth;
     public Transform cameraCenter;
+    public GameObject camObj;
     public cameraScript cam;
 
     [Header("UI")]
@@ -24,6 +25,7 @@ public class combatContoller : MonoBehaviour
 
     [Header("Combat")]
     public playerScript player;
+    public Transform playerCombatPosition;
     public bool isPlayerAttacking;
     public bool attackSet = false;
 
@@ -96,10 +98,15 @@ public class combatContoller : MonoBehaviour
         isInCombat = true;
         isPlayerAttacking = true;
         isPlayerTurn = false;
+        player.transform.position = new Vector3(playerCombatPosition.position.x, player.transform.position.y, playerCombatPosition.position.z);
     }
 
     void CombatUpdate()
     {
+        camObj.GetComponent<cameraScript>().enabled = true;
+        cam.gameObject.GetComponent<Animator>().SetTrigger("StartCombat");
+
+        player.transform.position = new Vector3(playerCombatPosition.position.x, player.transform.position.y, playerCombatPosition.position.z);
         playerHealthSlider.value = player.basis.health / player.basis.maxHealth;
         playerHeliumSlider.value = player.helium / player.maxHelium;
         enemyHealthSlider.value = enemy.basis.health / enemy.basis.maxHealth;

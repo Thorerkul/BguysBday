@@ -31,7 +31,8 @@ public class eventTypeClass
         }
         if (type == eventType.music)
         {
-            AudioSource.PlayClipAtPoint(clip, target.transform.position);
+            audioSource.clip = clip;
+            audioSource.Play();
             return;
         }
         if (type == eventType.combat)
@@ -50,14 +51,19 @@ public class triggerArea : MonoBehaviour
 {
     public eventTypeClass[] events;
 
+    public void Activate()
+    {
+        foreach (eventTypeClass type in events)
+        {
+            type.Activate();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 11)
         {
-            foreach (eventTypeClass type in events)
-            {
-                type.Activate();
-            }
+            Activate();
         }
     }
 
@@ -65,10 +71,7 @@ public class triggerArea : MonoBehaviour
     {
         if (collision.gameObject.layer == 11)
         {
-            foreach (eventTypeClass type in events)
-            {
-                type.Activate();
-            }
+            Activate();
         }
     }
 }

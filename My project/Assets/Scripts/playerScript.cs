@@ -52,6 +52,11 @@ public class playerScript : MonoBehaviour
         camDist = Vector3.Distance(transform.position, cam.transform.position);
     }
 
+    public void changeDialogueState(bool val)
+    {
+        isInDialogue = val;
+    }
+
     public void attack(AttackTypes type, enemyScript enemy, float damage)
     {
         if (type != enemy.basis.immuneTo)
