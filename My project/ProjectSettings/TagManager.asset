@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -15,9 +16,9 @@ TagManager:
   - Obstacles
   - Ground
   - Npc
-  - 
-  - 
-  - 
+  - Items
+  - TriggerArea
+  - Player
   - 
   - 
   - 

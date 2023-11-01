@@ -28,4 +28,9 @@ public class EntityBase : MonoBehaviour
 
     [SerializeField]
     public List<currentAttackTypes> attackTypes;
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }

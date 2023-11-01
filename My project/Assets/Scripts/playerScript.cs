@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerScript : MonoBehaviour
@@ -9,6 +11,7 @@ public class playerScript : MonoBehaviour
     public AttackTypes currentAttack;
 
     [Header("Movement")]
+    public bool canMove;
     public bool isInCombat;
     public float movementSpeed;
     public float jumpForce;
@@ -36,12 +39,22 @@ public class playerScript : MonoBehaviour
     [Header("Npc's")]
     public bool canInteract;
     public int npc;
-    public string interactableTag;
+    public string npcTag;
     public bool isInDialogue;
+
+    [Header("Inventory")]
+    public bool isInInventory;
+    public bool canPickupItem;
+    public GameObject inventoryUI;
 
     private void Start()
     {
         camDist = Vector3.Distance(transform.position, cam.transform.position);
+    }
+
+    public void changeDialogueState(bool val)
+    {
+        isInDialogue = val;
     }
 
     public void attack(AttackTypes type, enemyScript enemy, float damage)
@@ -56,10 +69,17 @@ public class playerScript : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (!isInCombat)
         {
+            isInInventory = inventoryUI.activeSelf;
+            if (isInDialogue)
+            {
+                inventoryUI.SetActive(false);
+            }
+            canMove = !isInDialogue && !isInInventory;
+
             RaycastHit hit;
             if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, distToJump, ground))
             {
@@ -69,12 +89,12 @@ public class playerScript : MonoBehaviour
                 isGrounded = false;
             }
 
-            if (Input.GetAxisRaw("Jump") >= 0.5f && canJump && isGrounded && !isInDialogue)
+            if (Input.GetAxisRaw("Jump") >= 0.5f && canJump && isGrounded && canMove)
             {
                 rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
             }
 
-            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * (isInDialogue ? 0 : 1);
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * (canMove ? 1 : 0);
 
             rb.velocity = new Vector3(input.x * movementSpeed, rb.velocity.y, input.y * movementSpeed);
 
@@ -94,11 +114,11 @@ public class playerScript : MonoBehaviour
     {
         if (other.gameObject.layer == npc)
         {
-            if (other.gameObject.tag == interactableTag.ToString())
+            if (other.gameObject.tag == npcTag.ToString())
             {
                 NpcBase npc = other.GetComponentInParent<NpcBase>();
                 npc.showPrompt = true;
-                if (Input.GetAxisRaw("Interact") > 0.1f && !isInDialogue)
+                if (Input.GetButtonDown("Interact") && !isInDialogue)
                 {
                     npc.EnterDialogue();
                 }
@@ -109,13 +129,23 @@ public class playerScript : MonoBehaviour
                 isInDialogue = npc.isInDialogue;
             }
         }
+
+        if (other.gameObject.layer == 9)
+        {
+            if (Input.GetButtonDown("Interact") && !isInDialogue && canPickupItem)
+            {
+                PickupableItem item = other.GetComponent<PickupableItem>();
+
+                item.Pickup();
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == npc)
         {
-            if (other.gameObject.tag == interactableTag.ToString())
+            if (other.gameObject.tag == npcTag.ToString())
             {
                 NpcBase npc = other.GetComponentInParent<NpcBase>();
                 npc.showPrompt = false;

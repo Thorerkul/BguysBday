@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +15,7 @@ public class combatContoller : MonoBehaviour
     [Range(0,1)]
     public float cameraSmooth;
     public Transform cameraCenter;
+    public GameObject camObj;
     public cameraScript cam;
 
     [Header("UI")]
@@ -24,6 +25,7 @@ public class combatContoller : MonoBehaviour
 
     [Header("Combat")]
     public playerScript player;
+    public Transform playerCombatPosition;
     public bool isPlayerAttacking;
     public bool attackSet = false;
 
@@ -42,6 +44,8 @@ public class combatContoller : MonoBehaviour
     public enemyScript[] enemies;
     public bool[] enemyTurn;
     public int currentEnemy;
+
+    public EnemySelector selector;
 
     [Header("Timekeeping")]
     public float playerendturntime;
@@ -63,7 +67,7 @@ public class combatContoller : MonoBehaviour
         Application.targetFrameRate = targetFPS;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (isInCombat)
         {
@@ -82,8 +86,27 @@ public class combatContoller : MonoBehaviour
         //cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
     }
 
+    public void ExitCombat()
+    {
+        isInCombat = false;
+        isPlayerAttacking = false;
+        isPlayerTurn = true;
+    }
+
+    public void StartCombat()
+    {
+        isInCombat = true;
+        isPlayerAttacking = true;
+        isPlayerTurn = false;
+        player.transform.position = new Vector3(playerCombatPosition.position.x, player.transform.position.y, playerCombatPosition.position.z);
+    }
+
     void CombatUpdate()
     {
+        camObj.GetComponent<cameraScript>().enabled = true;
+        cam.gameObject.GetComponent<Animator>().SetTrigger("StartCombat");
+
+        player.transform.position = new Vector3(playerCombatPosition.position.x, player.transform.position.y, playerCombatPosition.position.z);
         playerHealthSlider.value = player.basis.health / player.basis.maxHealth;
         playerHeliumSlider.value = player.helium / player.maxHelium;
         enemyHealthSlider.value = enemy.basis.health / enemy.basis.maxHealth;
@@ -95,10 +118,12 @@ public class combatContoller : MonoBehaviour
                 attackHolder.SetActive(true);
                 selectionConfirm.SetActive(false);
             }
-            else{
+            else
+            {
                 attackHolder.SetActive(false);
                 selectionConfirm.SetActive(true);
             }
+
             cameraCenter.position = Vector3.Lerp(cameraCenter.position, player.transform.position, cameraSmooth);
         }
         else
@@ -192,10 +217,89 @@ public class combatContoller : MonoBehaviour
                     enemyTurn[0] = true;
                     currentEnemy = 0;
                     foreach(enemyScript curEnemy in enemies)
-                        curEnemy.currentAttack = curEnemy.basis.attackTypes[Random.Range(0, curEnemy.basis.attackTypes.Count)].type;
+                    {
+                        /*
+                        if (curEnemy.basis.health <= 0)
+                        {
+                            int j = 0;
+                            for (int i = 0; i < enemies.Count(); i++)
+                            {
+                                if (enemies[i] == curEnemy)
+                                {
+                                    j = i;
+                                }
+                            }
+
+                            for (int i = j; i < enemies.Count() - 1; i++)
+                            {
+                                enemies[i] = enemies[i + 1];
+                                enemyTurn[i] = enemyTurn[i + 1];
+                                selector.enemies[i] = selector.enemies[i + 1];
+                            }
+
+                            //ø*
+                            for (int i = j; i < enemyTurn.Count() - 1; i++)
+                            {
+                                enemyTurn[i] = enemyTurn[i + 1];
+                            }
+
+                            for (int i = j; i < selector.enemies.Count() - 1; i++)
+                            {
+                                selector.enemies[i] = selector.enemies[i + 1];
+                            }*ø/
+
+                            curEnemy.basis.Die();
+
+                            Array.Resize(ref enemies, enemies.Length - 1);
+                            Array.Resize(ref enemyTurn, enemyTurn.Length - 1);
+                            Array.Resize(ref selector.enemies, selector.enemies.Length - 1);
+                        }
+                        */
+                        curEnemy.currentAttack = curEnemy.basis.attackTypes[UnityEngine.Random.Range(0, curEnemy.basis.attackTypes.Count)].type;
+                        enemy = curEnemy;
+                    }
                 }
 
                 cameraCenter.position = Vector3.Lerp(cameraCenter.position, enemy.transform.position, cameraSmooth);
+
+                foreach (enemyScript curEnemy in enemies)
+                {
+                    if (curEnemy.basis.health <= 0 && !isPlayerTurn && !isPlayerAttacking)
+                    {
+                        int j = 0;
+                        for (int i = 0; i < enemies.Count(); i++)
+                        {
+                            if (enemies[i] == curEnemy)
+                            {
+                                j = i;
+                            }
+                        }
+
+                        for (int i = j; i < enemies.Count() - 1; i++)
+                        {
+                            enemies[i] = enemies[i + 1];
+                            enemyTurn[i] = enemyTurn[i + 1];
+                            selector.enemies[i] = selector.enemies[i + 1];
+                        }
+
+                        /*
+                        for (int i = j; i < enemyTurn.Count() - 1; i++)
+                        {
+                            enemyTurn[i] = enemyTurn[i + 1];
+                        }
+
+                        for (int i = j; i < selector.enemies.Count() - 1; i++)
+                        {
+                            selector.enemies[i] = selector.enemies[i + 1];
+                        }*/
+
+                        curEnemy.basis.Die();
+
+                        Array.Resize(ref enemies, enemies.Length - 1);
+                        Array.Resize(ref enemyTurn, enemyTurn.Length - 1);
+                        Array.Resize(ref selector.enemies, selector.enemies.Length - 1);
+                    }
+                }
             }
         }
     }
@@ -234,7 +338,7 @@ public class combatContoller : MonoBehaviour
         player.anim.SetTrigger(player.nextAnimation);
         isPlayerAttacking = true;
         isPlayerTurn = false;
-        enemy.currentAttack = enemy.basis.attackTypes[Random.Range(0, enemy.basis.attackTypes.Count)].type;
+        enemy.currentAttack = enemy.basis.attackTypes[UnityEngine.Random.Range(0, enemy.basis.attackTypes.Count)].type;
         playerendturntime = Time.timeSinceLevelLoad;
     }
 }
