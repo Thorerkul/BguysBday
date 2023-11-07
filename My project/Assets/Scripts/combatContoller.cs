@@ -22,10 +22,12 @@ public class combatContoller : MonoBehaviour
     public Slider playerHealthSlider;
     public Slider playerHeliumSlider;
     public Slider enemyHealthSlider;
+    public Slider playerSoupSlider;
 
     [Header("Combat")]
     public playerScript player;
     public Transform playerCombatPosition;
+    public bool isPlayerDead;
     public bool isPlayerAttacking;
     public bool attackSet = false;
 
@@ -60,6 +62,7 @@ public class combatContoller : MonoBehaviour
 
     [Header("Other")]
     public GameObject battleUI;
+    public bool isTutFight;
 
     private void Start()
     {
@@ -79,6 +82,7 @@ public class combatContoller : MonoBehaviour
 
         battleUI.SetActive(isInCombat);
         player.isInCombat = isInCombat;
+        playerSoupSlider.value = Inventory.Instance.soup / 100;
     }
 
     void NormalUpdate()
@@ -101,8 +105,22 @@ public class combatContoller : MonoBehaviour
         player.transform.position = new Vector3(playerCombatPosition.position.x, player.transform.position.y, playerCombatPosition.position.z);
     }
 
+    public void StartDialogue(CustomEvent cevent, GameObject dialogue) {
+        cevent.Invoke(dialogue);
+    }
+    
     void CombatUpdate()
     {
+        if (player.basis.health <= 0)
+        {
+            isPlayerDead = true;
+        }
+
+        if (isPlayerDead && isTutFight)
+        {
+            ExitCombat();
+        }
+
         camObj.GetComponent<cameraScript>().enabled = true;
         cam.gameObject.GetComponent<Animator>().SetTrigger("StartCombat");
 
@@ -315,11 +333,6 @@ public class combatContoller : MonoBehaviour
         {
             player.currentAttack = AttackTypes.Heavy;
             player.nextAnimation = "HeavyAttack";
-        }
-        else if (attack == "Piercing" && player.helium >= 5f)
-        {
-            player.currentAttack = AttackTypes.Piercing;
-            player.nextAnimation = "PiercingAttack";
         }
         else if (attack == "Blunt" && player.helium >= 5f)
         {

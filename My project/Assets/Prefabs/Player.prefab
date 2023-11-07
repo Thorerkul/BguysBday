@@ -90,12 +90,9 @@ MonoBehaviour:
   - name: Heavy
     damage: 2
     type: 1
-  - name: Piercing
-    damage: 4
-    type: 2
   - name: Blunt
     damage: 4
-    type: 3
+    type: 2
 --- !u!114 &4302632621006060837
 MonoBehaviour:
   m_ObjectHideFlags: 0

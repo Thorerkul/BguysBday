@@ -8,6 +8,11 @@ public class loadLevelTrigger : MonoBehaviour
 {
     public string levelToLoad;
 
+    public void loadLevel()
+    {
+        SceneManager.LoadScene(levelToLoad);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 11)

@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] Object playscene;
     public GameObject mainCanvas;
     public GameObject optionsCanvas;
     public void Play()
     {
         //THIS IS HARD-CODED, CHANGE THIS AS YOU WANT
-        SceneManager.LoadScene("KGamerScene");
+        SceneManager.LoadScene(playscene.name);
     }
     public void Options()
     {

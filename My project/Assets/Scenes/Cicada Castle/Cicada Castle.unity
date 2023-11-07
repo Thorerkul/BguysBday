@@ -2183,6 +2183,7 @@ MonoBehaviour:
   target2: {fileID: 1453168324}
   centerOrigin: {fileID: 165665847}
   currentTarget: {fileID: 0}
+  virtualCamera: {fileID: 0}
 --- !u!95 &519420035
 Animator:
   serializedVersion: 5
@@ -4087,11 +4088,13 @@ MonoBehaviour:
   isPlayerTurn: 1
   cameraSmooth: 0.01
   cameraCenter: {fileID: 165665847}
+  camObj: {fileID: 0}
   cam: {fileID: 519420034}
   playerHealthSlider: {fileID: 600525111}
   playerHeliumSlider: {fileID: 0}
   enemyHealthSlider: {fileID: 9481498}
   player: {fileID: 1732863293}
+  playerCombatPosition: {fileID: 0}
   isPlayerAttacking: 0
   attackSet: 0
   attackHolder: {fileID: 1641132219}
@@ -11553,7 +11556,7 @@ MonoBehaviour:
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.1
-  m_Strategy: 1
+  m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
   m_Damping: 0

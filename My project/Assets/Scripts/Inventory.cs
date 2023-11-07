@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
     public onItemChanged onItemChangedCallback;
 
     public int space = 20;
+    public int soup = 0;
 
     public int gamerMiles;
 

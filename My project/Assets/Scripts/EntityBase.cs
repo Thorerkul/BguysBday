@@ -8,8 +8,7 @@ public enum AttackTypes
     None =    -1,
     Basic =    0,
     Heavy =    1,
-    Piercing = 2,
-    Blunt =    3,
+    Blunt =    2,
 }
 
 [System.Serializable]

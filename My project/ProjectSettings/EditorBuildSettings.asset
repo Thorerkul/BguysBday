@@ -5,19 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/KGamerScene.unity
-    guid: e2980520c9b9c5f4d84361ce365a3036
-=======
-    path: Assets/Scenes/Cicada Castle/Cicada Castle.unity
-    guid: b68fadc7f8db243449b594b34b7691a3
+    path: Assets/Scenes/Opening/Opening.unity
+    guid: b0084bf99a0f57c409618881a39a6ab0
   - enabled: 1
-    path: Assets/Scenes/Cicada Castle/Cicada Castle Corridor.unity
-    guid: cfd72488cf91325428748149b5a0ab77
+    path: Assets/Scenes/The Crater/Fight.unity
+    guid: dc2b5225a9483a94890662403f384772
   - enabled: 1
-    path: Assets/Scenes/Cicada Castle/Final Boss.unity
-    guid: a00b2c597cecbdf4098a6171cc8bc7b1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 25e16e743006c414fb9354946f0074b7
   m_configObjects: {}
