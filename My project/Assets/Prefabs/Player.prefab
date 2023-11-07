@@ -85,10 +85,10 @@ MonoBehaviour:
   immuneTo: -1
   attackTypes:
   - name: Basic
-    damage: 3
+    damage: 2
     type: 0
   - name: Heavy
-    damage: 2
+    damage: 3
     type: 1
   - name: Blunt
     damage: 4

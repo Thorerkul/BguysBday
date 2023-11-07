@@ -63,6 +63,7 @@ public class combatContoller : MonoBehaviour
     [Header("Other")]
     public GameObject battleUI;
     public bool isTutFight;
+    public tutfight tut;
 
     private void Start()
     {
@@ -118,7 +119,8 @@ public class combatContoller : MonoBehaviour
 
         if (isPlayerDead && isTutFight)
         {
-            ExitCombat();
+            tut.startcutscene();
+            isTutFight = false;
         }
 
         camObj.GetComponent<cameraScript>().enabled = true;
