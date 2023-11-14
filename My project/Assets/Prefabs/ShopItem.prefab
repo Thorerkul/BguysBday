@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0 GM
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 20fe8f782ed7907489d0ee87ae484818, type: 2}
-  m_sharedMaterial: {fileID: 6162621141723651427, guid: 20fe8f782ed7907489d0ee87ae484818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -279,11 +279,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7287026665906889683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d72c72254345b0c4ab99c02d941bcc82, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e88482137c0e26418b6583c3fd5341e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 0}
-  item: {fileID: 11400000, guid: c3764bb105ef2d44582139c898a1336f, type: 2}
+  item: {fileID: 0}
   icon: {fileID: 340166694669282948}
   text: {fileID: 1838414843945866541}
   price: {fileID: 1310226214124677909}
@@ -354,8 +354,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Item
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 20fe8f782ed7907489d0ee87ae484818, type: 2}
-  m_sharedMaterial: {fileID: 6162621141723651427, guid: 20fe8f782ed7907489d0ee87ae484818, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

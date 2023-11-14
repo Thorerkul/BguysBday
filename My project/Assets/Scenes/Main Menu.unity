@@ -948,10 +948,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 658084862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83518d8e4fc71174e94675e0a7c7fe02, type: 3}
+  m_Script: {fileID: 11500000, guid: ff36b54cd78f7674a96fb9cfc821dc3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playscene: {fileID: 102900000, guid: dc2b5225a9483a94890662403f384772, type: 3}
+  playscene: {fileID: 102900000, guid: 2ed05d2a56a093c42ba7e8824c7ac9ce, type: 3}
   mainCanvas: {fileID: 377880695}
   optionsCanvas: {fileID: 507203874}
 --- !u!82 &658084867
