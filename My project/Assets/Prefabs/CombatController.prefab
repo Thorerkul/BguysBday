@@ -56,8 +56,10 @@ MonoBehaviour:
   playerHealthSlider: {fileID: 0}
   playerHeliumSlider: {fileID: 0}
   enemyHealthSlider: {fileID: 0}
+  playerSoupSlider: {fileID: 0}
   player: {fileID: 0}
   playerCombatPosition: {fileID: 0}
+  isPlayerDead: 0
   isPlayerAttacking: 0
   attackSet: 0
   attackHolder: {fileID: 0}
@@ -81,6 +83,8 @@ MonoBehaviour:
   battleMusic: {fileID: 8300000, guid: 6c34d3dc4f0da714499a76c942b01eec, type: 3}
   fieldMusic: {fileID: 0}
   battleUI: {fileID: 0}
+  isTutFight: 0
+  tut: {fileID: 0}
 --- !u!114 &4730214156648619302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,14 +94,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4280405541605523687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b591b7598afa5f74b968e6958cf92046, type: 3}
+  m_Script: {fileID: 11500000, guid: afd821b6c3c50654a94ac7b45d37ccb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curEnemy: 0
-  enemies:
-  - {fileID: 0}
+  enemies: []
   player: {fileID: 0}
-  controller: {fileID: 0}
+  controller: {fileID: 4353926390570396265}
 --- !u!82 &7504536947064234264
 AudioSource:
   m_ObjectHideFlags: 0

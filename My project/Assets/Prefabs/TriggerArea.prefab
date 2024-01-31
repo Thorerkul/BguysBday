@@ -63,13 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 820159758293665204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3e654bf621b2744a43bcf90b26e1db, type: 3}
+  m_Script: {fileID: 11500000, guid: 690fd54a60ef6284788d43f36e1459aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  events:
-  - type: 0
-    target: {fileID: 0}
-    name: DoorOpen
-    clip: {fileID: 0}
-    audioSource: {fileID: 0}
-    contoller: {fileID: 0}
+  events: []

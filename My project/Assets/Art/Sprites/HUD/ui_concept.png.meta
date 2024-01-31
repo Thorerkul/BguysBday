@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +134,154 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ui_concept_0
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 1367
+        width: 429
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe35a9f436c75054abd84135331ca3ce
+      internalID: -925857535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_concept_1
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 1370
+        width: 480
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f016e3f80de6394ea19a5ca8d21eec9
+      internalID: 583852545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_concept_2
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1365
+        width: 449
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a6926ca2a41434b8a0bbc9387f1446
+      internalID: -642078719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_concept_3
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 1362
+        width: 158
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718e05fe932ef0349838e2f0238de6ac
+      internalID: -930776011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_concept_4
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1248
+        width: 426
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb5914c43acd2841bfbd9214e57c707
+      internalID: -2142518293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_concept_5
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 1275
+        width: 348
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff98e1a567d6a794db3aa385a34f2fab
+      internalID: 1991091062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_concept_6
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 1261
+        width: 363
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba7b68ef46b30e47b52d8af9f059939
+      internalID: 2138252002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +292,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ui_concept_0: -925857535
+      ui_concept_1: 583852545
+      ui_concept_2: -642078719
+      ui_concept_3: -930776011
+      ui_concept_4: -2142518293
+      ui_concept_5: 1991091062
+      ui_concept_6: 2138252002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
